@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.1 (2026-01-19)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/anthalehq/anthale-python/compare/v0.1.0...v0.1.1)
+
+### Chores
+
+* update SDK settings ([8fd852e](https://github.com/anthalehq/anthale-python/commit/8fd852eeb9b966ebf6237e731880e263f1c5d5d4))
+
+
+### Build System
+
+* add oicd to python ([4d58017](https://github.com/anthalehq/anthale-python/commit/4d58017ef8972651d61fd03b7947216331c7a3d3))
+
 ## 0.1.0 (2026-01-19)
 
 Full Changelog: [v0.0.2...v0.1.0](https://github.com/anthalehq/anthale-python/compare/v0.0.2...v0.1.0)
