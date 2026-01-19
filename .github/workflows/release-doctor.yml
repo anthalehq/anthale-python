@@ -1,6 +1,6 @@
 name: Release Doctor
 on:
-  pull_request:
+  push:
     branches:
       - main
   workflow_dispatch:
@@ -9,6 +9,7 @@ jobs:
   release_doctor:
     name: release doctor
     runs-on: ubuntu-latest
+    environment: anthale-environment
     if: github.repository == 'anthalehq/anthale-python' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'release-please') || github.head_ref == 'next')
 
     steps:
@@ -17,5 +18,3 @@ jobs:
       - name: Check release environment
         run: |
           bash ./bin/check-release-environment
-        env:
-          PYPI_TOKEN: ${{ secrets.ANTHALE_PYPI_TOKEN || secrets.PYPI_TOKEN }}

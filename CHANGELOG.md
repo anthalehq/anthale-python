@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.0 (2026-01-19)
+
+Full Changelog: [v0.0.2...v0.1.0](https://github.com/anthalehq/anthale-python/compare/v0.0.2...v0.1.0)
+
+### Features
+
+* **api:** disable mpc ([9c7115e](https://github.com/anthalehq/anthale-python/commit/9c7115ed37bead7d79bb1002ff0b5ce768d9c229))
+
+
+### Chores
+
+* update SDK settings ([2acfa30](https://github.com/anthalehq/anthale-python/commit/2acfa3002e68ebe0106a77f0833fb2494008c97e))
+
+
+### Build System
+
+* configure environment name for deploying ([503b944](https://github.com/anthalehq/anthale-python/commit/503b9445617ce4ae48d1909064f2d41de0293e03))
+* publish new version via oidc ([4b33eae](https://github.com/anthalehq/anthale-python/commit/4b33eaedd342d3a67dd529876a15b807638acc6c))
+
 ## 0.0.2 (2026-01-19)
 
 Full Changelog: [v0.0.1...v0.0.2](https://github.com/anthalehq/anthale-python/compare/v0.0.1...v0.0.2)
