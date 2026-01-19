@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.3 (2026-01-19)
+
+Full Changelog: [v0.0.2...v0.0.3](https://github.com/anthalehq/anthale-python/compare/v0.0.2...v0.0.3)
+
+### Chores
+
+* update SDK settings ([2acfa30](https://github.com/anthalehq/anthale-python/commit/2acfa3002e68ebe0106a77f0833fb2494008c97e))
+
 ## 0.0.2 (2026-01-19)
 
 Full Changelog: [v0.0.1...v0.0.2](https://github.com/anthalehq/anthale-python/compare/v0.0.1...v0.0.2)

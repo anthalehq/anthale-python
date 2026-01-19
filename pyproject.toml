@@ -1,6 +1,6 @@
 [project]
 name = "anthale"
-version = "0.0.2"
+version = "0.0.3"
 description = "The official Python library for the anthale API"
 dynamic = ["readme"]
 license = "Apache-2.0"
