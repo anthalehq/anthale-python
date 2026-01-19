@@ -36,7 +36,7 @@ client = Anthale(
 )
 
 response = client.organizations.policies.enforce(
-    policy_identifier="REPLACE_ME",
+    policy_identifier="a90e34d6-41af-432f-a6ae-046598df4539",
     direction="input",
     messages=[
         {
@@ -69,7 +69,7 @@ client = AsyncAnthale(
 
 async def main() -> None:
     response = await client.organizations.policies.enforce(
-        policy_identifier="REPLACE_ME",
+        policy_identifier="a90e34d6-41af-432f-a6ae-046598df4539",
         direction="input",
         messages=[
             {
@@ -112,7 +112,7 @@ async def main() -> None:
         http_client=DefaultAioHttpClient(),
     ) as client:
         response = await client.organizations.policies.enforce(
-            policy_identifier="REPLACE_ME",
+            policy_identifier="a90e34d6-41af-432f-a6ae-046598df4539",
             direction="input",
             messages=[
                 {
@@ -153,7 +153,7 @@ client = Anthale()
 
 try:
     client.organizations.policies.enforce(
-        policy_identifier="REPLACE_ME",
+        policy_identifier="a90e34d6-41af-432f-a6ae-046598df4539",
         direction="input",
         messages=[
             {
@@ -205,7 +205,7 @@ client = Anthale(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).organizations.policies.enforce(
-    policy_identifier="REPLACE_ME",
+    policy_identifier="a90e34d6-41af-432f-a6ae-046598df4539",
     direction="input",
     messages=[
         {
@@ -237,7 +237,7 @@ client = Anthale(
 
 # Override per-request:
 client.with_options(timeout=5.0).organizations.policies.enforce(
-    policy_identifier="REPLACE_ME",
+    policy_identifier="a90e34d6-41af-432f-a6ae-046598df4539",
     direction="input",
     messages=[
         {
@@ -287,7 +287,7 @@ from anthale import Anthale
 
 client = Anthale()
 response = client.organizations.policies.with_raw_response.enforce(
-    policy_identifier="REPLACE_ME",
+    policy_identifier="a90e34d6-41af-432f-a6ae-046598df4539",
     direction="input",
     messages=[{
         "content": "Can you summarize the plot of Interstellar?",
@@ -312,7 +312,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.organizations.policies.with_streaming_response.enforce(
-    policy_identifier="REPLACE_ME",
+    policy_identifier="a90e34d6-41af-432f-a6ae-046598df4539",
     direction="input",
     messages=[
         {
