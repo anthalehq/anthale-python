@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.2 (2026-01-24)
+
+Full Changelog: [v0.1.1...v0.1.2](https://github.com/anthalehq/anthale-python/compare/v0.1.1...v0.1.2)
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([c6294b6](https://github.com/anthalehq/anthale-python/commit/c6294b65d61b47d6ee4fb6b38214eaa235086247))
+
 ## 0.1.1 (2026-01-19)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/anthalehq/anthale-python/compare/v0.1.0...v0.1.1)
