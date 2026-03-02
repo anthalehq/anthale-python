@@ -1,11 +1,11 @@
 [project]
 name = "anthale"
-version = "0.1.2"
+version = "0.2.0"
 description = "The official Python library for the anthale API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Anthale", email = "" },
+{ name = "Anthale", email = "contact@anthale.com" },
 ]
 
 dependencies = [

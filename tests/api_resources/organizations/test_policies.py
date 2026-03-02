@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPolicies:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_enforce(self, client: Anthale) -> None:
         policy = client.organizations.policies.enforce(
@@ -32,7 +32,7 @@ class TestPolicies:
         )
         assert_matches_type(PolicyEnforceResponse, policy, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_enforce_with_all_params(self, client: Anthale) -> None:
         policy = client.organizations.policies.enforce(
@@ -44,11 +44,12 @@ class TestPolicies:
                     "role": "user",
                 }
             ],
+            include_evaluations=False,
             metadata={"foo": "bar"},
         )
         assert_matches_type(PolicyEnforceResponse, policy, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_enforce(self, client: Anthale) -> None:
         response = client.organizations.policies.with_raw_response.enforce(
@@ -67,7 +68,7 @@ class TestPolicies:
         policy = response.parse()
         assert_matches_type(PolicyEnforceResponse, policy, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_enforce(self, client: Anthale) -> None:
         with client.organizations.policies.with_streaming_response.enforce(
@@ -88,7 +89,7 @@ class TestPolicies:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_enforce(self, client: Anthale) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_identifier` but received ''"):
@@ -109,7 +110,7 @@ class TestAsyncPolicies:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_enforce(self, async_client: AsyncAnthale) -> None:
         policy = await async_client.organizations.policies.enforce(
@@ -124,7 +125,7 @@ class TestAsyncPolicies:
         )
         assert_matches_type(PolicyEnforceResponse, policy, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_enforce_with_all_params(self, async_client: AsyncAnthale) -> None:
         policy = await async_client.organizations.policies.enforce(
@@ -136,11 +137,12 @@ class TestAsyncPolicies:
                     "role": "user",
                 }
             ],
+            include_evaluations=False,
             metadata={"foo": "bar"},
         )
         assert_matches_type(PolicyEnforceResponse, policy, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_enforce(self, async_client: AsyncAnthale) -> None:
         response = await async_client.organizations.policies.with_raw_response.enforce(
@@ -159,7 +161,7 @@ class TestAsyncPolicies:
         policy = await response.parse()
         assert_matches_type(PolicyEnforceResponse, policy, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_enforce(self, async_client: AsyncAnthale) -> None:
         async with async_client.organizations.policies.with_streaming_response.enforce(
@@ -180,7 +182,7 @@ class TestAsyncPolicies:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_enforce(self, async_client: AsyncAnthale) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_identifier` but received ''"):
