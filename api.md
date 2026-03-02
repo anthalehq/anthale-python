@@ -5,7 +5,7 @@
 Types:
 
 ```python
-from anthale.types.organizations import PolicyEnforceResponse
+from anthale.types.organizations import PolicyEnforcementResultAction, PolicyEnforceResponse
 ```
 
 Methods:
