@@ -50,6 +50,7 @@ class PoliciesResource(SyncAPIResource):
         *,
         direction: Literal["input", "output"],
         messages: Iterable[policy_enforce_params.Message],
+        include_evaluations: bool | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -69,6 +70,8 @@ class PoliciesResource(SyncAPIResource):
 
           messages: Ordered list of messages that compose the conversation to evaluate.
 
+          include_evaluations: Whether to include evaluation details in the response.
+
           metadata: Optional contextual metadata forwarded to guardrails.
 
           extra_headers: Send extra headers
@@ -87,6 +90,7 @@ class PoliciesResource(SyncAPIResource):
                 {
                     "direction": direction,
                     "messages": messages,
+                    "include_evaluations": include_evaluations,
                     "metadata": metadata,
                 },
                 policy_enforce_params.PolicyEnforceParams,
@@ -124,6 +128,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         *,
         direction: Literal["input", "output"],
         messages: Iterable[policy_enforce_params.Message],
+        include_evaluations: bool | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -143,6 +148,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           messages: Ordered list of messages that compose the conversation to evaluate.
 
+          include_evaluations: Whether to include evaluation details in the response.
+
           metadata: Optional contextual metadata forwarded to guardrails.
 
           extra_headers: Send extra headers
@@ -161,6 +168,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 {
                     "direction": direction,
                     "messages": messages,
+                    "include_evaluations": include_evaluations,
                     "metadata": metadata,
                 },
                 policy_enforce_params.PolicyEnforceParams,

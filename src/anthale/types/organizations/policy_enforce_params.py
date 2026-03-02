@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["PolicyEnforceParams", "Message", "MessageContentBlock"]
 
@@ -14,6 +16,9 @@ class PolicyEnforceParams(TypedDict, total=False):
 
     messages: Required[Iterable[Message]]
     """Ordered list of messages that compose the conversation to evaluate."""
+
+    include_evaluations: Annotated[bool, PropertyInfo(alias="includeEvaluations")]
+    """Whether to include evaluation details in the response."""
 
     metadata: Dict[str, object]
     """Optional contextual metadata forwarded to guardrails."""
@@ -35,5 +40,5 @@ class Message(TypedDict, total=False):
     content: Required[Union[str, Iterable[MessageContentBlock]]]
     """Raw text or a list of typed text blocks composing the message."""
 
-    role: Required[Literal["system", "user", "assistant"]]
+    role: Required[Literal["system", "user", "assistant", "tool"]]
     """Message role within the conversation."""
