@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 (2026-03-02)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/anthalehq/anthale-python/compare/v0.2.0...v0.2.1)
+
+### Chores
+
+* remove custom code ([67adc49](https://github.com/anthalehq/anthale-python/commit/67adc49acbfa437716e2c92d17e29877206b72b8))
+
 ## 0.2.0 (2026-03-02)
 
 Full Changelog: [v0.1.2...v0.2.0](https://github.com/anthalehq/anthale-python/compare/v0.1.2...v0.2.0)
