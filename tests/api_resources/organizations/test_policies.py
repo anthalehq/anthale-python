@@ -44,6 +44,7 @@ class TestPolicies:
                     "role": "user",
                 }
             ],
+            include_evaluations=False,
             metadata={"foo": "bar"},
         )
         assert_matches_type(PolicyEnforceResponse, policy, path=["response"])
@@ -136,6 +137,7 @@ class TestAsyncPolicies:
                     "role": "user",
                 }
             ],
+            include_evaluations=False,
             metadata={"foo": "bar"},
         )
         assert_matches_type(PolicyEnforceResponse, policy, path=["response"])
