@@ -7,6 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ..._utils import PropertyInfo
 from ..._models import BaseModel
+from .policy_enforcement_result_action import PolicyEnforcementResultAction
 
 __all__ = [
     "PolicyEnforceResponse",
@@ -38,7 +39,7 @@ class EvaluationPromptInjectionEvaluationThread(BaseModel):
 class EvaluationPromptInjectionEvaluation(BaseModel):
     """Evaluation payload for prompt injection guardrail."""
 
-    action: Literal["block", "redact", "detect", "allow"]
+    action: PolicyEnforcementResultAction
     """Action suggested by this guardrail (allow, detect, redact, block)."""
 
     guardrail_key: Literal["prompt-injection-protection"] = FieldInfo(alias="guardrailKey")
@@ -73,7 +74,7 @@ class EvaluationContentSafetyEvaluationThread(BaseModel):
 class EvaluationContentSafetyEvaluation(BaseModel):
     """Evaluation payload for content safety guardrail."""
 
-    action: Literal["block", "redact", "detect", "allow"]
+    action: PolicyEnforcementResultAction
     """Action suggested by this guardrail (allow, detect, redact, block)."""
 
     guardrail_key: Literal["content-moderation"] = FieldInfo(alias="guardrailKey")
@@ -129,7 +130,7 @@ class EvaluationDataLeakageEvaluationThread(BaseModel):
 class EvaluationDataLeakageEvaluation(BaseModel):
     """Evaluation payload for data leakage guardrail."""
 
-    action: Literal["block", "redact", "detect", "allow"]
+    action: PolicyEnforcementResultAction
     """Action suggested by this guardrail (allow, detect, redact, block)."""
 
     guardrail_key: Literal["data-leakage-prevention"] = FieldInfo(alias="guardrailKey")
@@ -164,7 +165,7 @@ class EvaluationContextSafetyEvaluationThread(BaseModel):
 class EvaluationContextSafetyEvaluation(BaseModel):
     """Evaluation payload for context safety guardrail."""
 
-    action: Literal["block", "redact", "detect", "allow"]
+    action: PolicyEnforcementResultAction
     """Action suggested by this guardrail (allow, detect, redact, block)."""
 
     guardrail_key: Literal["topic-control"] = FieldInfo(alias="guardrailKey")
@@ -194,7 +195,7 @@ Evaluation: TypeAlias = Annotated[
 class PolicyEnforceResponse(BaseModel):
     """Policy enforcement response schema."""
 
-    action: Literal["block", "redact", "detect", "allow"]
+    action: PolicyEnforcementResultAction
     """Overall action decided by the policy (allow, detect, redact, block)."""
 
     enforcer_identifier: str = FieldInfo(alias="enforcerIdentifier")
