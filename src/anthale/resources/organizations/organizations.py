@@ -19,6 +19,7 @@ __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 class OrganizationsResource(SyncAPIResource):
     @cached_property
     def policies(self) -> PoliciesResource:
+        """Policy lifecycle management."""
         return PoliciesResource(self._client)
 
     @cached_property
@@ -44,6 +45,7 @@ class OrganizationsResource(SyncAPIResource):
 class AsyncOrganizationsResource(AsyncAPIResource):
     @cached_property
     def policies(self) -> AsyncPoliciesResource:
+        """Policy lifecycle management."""
         return AsyncPoliciesResource(self._client)
 
     @cached_property
@@ -72,6 +74,7 @@ class OrganizationsResourceWithRawResponse:
 
     @cached_property
     def policies(self) -> PoliciesResourceWithRawResponse:
+        """Policy lifecycle management."""
         return PoliciesResourceWithRawResponse(self._organizations.policies)
 
 
@@ -81,6 +84,7 @@ class AsyncOrganizationsResourceWithRawResponse:
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
+        """Policy lifecycle management."""
         return AsyncPoliciesResourceWithRawResponse(self._organizations.policies)
 
 
@@ -90,6 +94,7 @@ class OrganizationsResourceWithStreamingResponse:
 
     @cached_property
     def policies(self) -> PoliciesResourceWithStreamingResponse:
+        """Policy lifecycle management."""
         return PoliciesResourceWithStreamingResponse(self._organizations.policies)
 
 
@@ -99,4 +104,5 @@ class AsyncOrganizationsResourceWithStreamingResponse:
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        """Policy lifecycle management."""
         return AsyncPoliciesResourceWithStreamingResponse(self._organizations.policies)
