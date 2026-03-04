@@ -44,6 +44,7 @@ Repository = "https://github.com/anthalehq/anthale-python"
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
 langchain = ['langchain']
+openai = ["openai"]
 
 [tool.uv]
 managed = true
@@ -70,6 +71,7 @@ dev = [
     "rich>=13.7.1",
     "pytest-xdist>=3.6.1",
     "langchain",
+    "openai",
 ]
 pydantic-v1 = [
     "pydantic>=1.9.0,<2",
