@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 (2026-03-04)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/anthalehq/anthale-python/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* implement openai integration ([b49b3a2](https://github.com/anthalehq/anthale-python/commit/b49b3a21208369a45dc70023cd539be70e597c46))
+
 ## 0.3.0 (2026-03-04)
 
 Full Changelog: [v0.2.1...v0.3.0](https://github.com/anthalehq/anthale-python/compare/v0.2.1...v0.3.0)
