@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0 (2026-03-04)
+
+Full Changelog: [v0.2.1...v0.3.0](https://github.com/anthalehq/anthale-python/compare/v0.2.1...v0.3.0)
+
+### Features
+
+* implement langchain integration ([b6e767d](https://github.com/anthalehq/anthale-python/commit/b6e767dbbcb345aab5a33c50958e11671599d782))
+
+
+### Chores
+
+* **internal:** codegen related update ([5ad5dbb](https://github.com/anthalehq/anthale-python/commit/5ad5dbb7e967366be76903b1d4e23b5f3ecf4123))
+
 ## 0.2.1 (2026-03-02)
 
 Full Changelog: [v0.2.0...v0.2.1](https://github.com/anthalehq/anthale-python/compare/v0.2.0...v0.2.1)
