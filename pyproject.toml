@@ -17,6 +17,7 @@ dependencies = [
   "sniffio",
 ]
 
+
 requires-python = ">= 3.9"
 classifiers = [
   "Typing :: Typed",
@@ -42,6 +43,7 @@ Repository = "https://github.com/anthalehq/anthale-python"
 
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
+langchain = ['langchain']
 
 [tool.uv]
 managed = true
@@ -67,6 +69,7 @@ dev = [
     "importlib-metadata>=6.7.0",
     "rich>=13.7.1",
     "pytest-xdist>=3.6.1",
+    "langchain",
 ]
 pydantic-v1 = [
     "pydantic>=1.9.0,<2",
