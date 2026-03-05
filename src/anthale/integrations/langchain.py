@@ -141,7 +141,7 @@ def _flatten(*, value: Any) -> list[Any]:
 
     messages_attribute = getattr(value, "messages", None)
     if messages_attribute is None and isinstance(value, Mapping):
-        messages_attribute = value.get("messages")
+        messages_attribute = value.get("messages")  # type: ignore
 
     if isinstance(messages_attribute, (list, tuple)):
         out = []
@@ -251,7 +251,6 @@ class AnthaleLangchainMiddleware(AgentMiddleware):  # type: ignore[misc]
             metadata=metadata,
         )
 
-    @override
     def wrap_model_call(
         self,
         request: Any,
@@ -288,7 +287,6 @@ class AnthaleLangchainMiddleware(AgentMiddleware):  # type: ignore[misc]
 
         return response
 
-    @override
     async def awrap_model_call(
         self,
         request: Any,
@@ -325,69 +323,69 @@ class AnthaleLangchainMiddleware(AgentMiddleware):  # type: ignore[misc]
 
         return response
 
-    @override
-    def wrap_tool_call(
-        self,
-        request: Any,
-        handler: Callable[..., Any],
-    ) -> Any:
-        """
-        Intercept and control tool execution via handler callback. It invokes Anthale policy enforcement on the tool
-        arguments before the tool is executed.
+    # @override
+    # def wrap_tool_call(
+    #     self,
+    #     request: Any,
+    #     handler: Callable[..., Any],
+    # ) -> Any:
+    #     """
+    #     Intercept and control tool execution via handler callback. It invokes Anthale policy enforcement on the tool
+    #     arguments before the tool is executed.
 
-        This method is called automatically by the LangGraph agent runtime on every tool invocation. You do not need
-        to call it directly; attach the middleware to an agent via `create_agent(middleware=[...])` instead.
+    #     This method is called automatically by the LangGraph agent runtime on every tool invocation. You do not need
+    #     to call it directly; attach the middleware to an agent via `create_agent(middleware=[...])` instead.
 
-        Args:
-            request (ToolCallRequest): Request object containing tool call information.
-            handler (Callable[[ToolCallRequest], ToolMessage  |  Command[Any]]): Callback that executes the tool
-            call and returns a response or command.
+    #     Args:
+    #         request (ToolCallRequest): Request object containing tool call information.
+    #         handler (Callable[[ToolCallRequest], ToolMessage  |  Command[Any]]): Callback that executes the tool
+    #         call and returns a response or command.
 
-        Raises:
-            AnthalePolicyViolationError: If the policy enforcement response action is block.
+    #     Raises:
+    #         AnthalePolicyViolationError: If the policy enforcement response action is block.
 
-        Returns:
-            ToolMessage | Command[Any]: The result from the tool call, potentially modified by Anthale enforcement.
-        """
-        tool_call = getattr(request, "tool_call", {})
-        tool_args = tool_call.get("args") if hasattr(tool_call, "get") else None
-        request_messages = _extract_messages(value=tool_args) if tool_args is not None else []
-        if request_messages and self._sync_enforcer is not None:
-            self._sync_enforcer.enforce(direction="input", messages=request_messages)
+    #     Returns:
+    #         ToolMessage | Command[Any]: The result from the tool call, potentially modified by Anthale enforcement.
+    #     """
+    #     tool_call = getattr(request, "tool_call", {})
+    #     tool_args = tool_call.get("args") if hasattr(tool_call, "get") else None
+    #     request_messages = _extract_messages(value=tool_args) if tool_args is not None else []
+    #     if request_messages and self._sync_enforcer is not None:
+    #         self._sync_enforcer.enforce(direction="input", messages=request_messages)
 
-        return handler(request)
+    #     return handler(request)
 
-    @override
-    async def awrap_tool_call(
-        self,
-        request: Any,
-        handler: Callable[..., Awaitable[Any]],
-    ) -> Any:
-        """
-        Async variant of `wrap_tool_call`. Intercepts tool execution and invokes Anthale policy enforcement on the
-        tool arguments before the tool is executed.
+    # @override
+    # async def awrap_tool_call(
+    #     self,
+    #     request: Any,
+    #     handler: Callable[..., Awaitable[Any]],
+    # ) -> Any:
+    #     """
+    #     Async variant of `wrap_tool_call`. Intercepts tool execution and invokes Anthale policy enforcement on the
+    #     tool arguments before the tool is executed.
 
-        This method is called automatically by the LangGraph agent runtime on every async tool invocation (e.g. when
-        using `agent.ainvoke`). You do not need to call it directly.
+    #     This method is called automatically by the LangGraph agent runtime on every async tool invocation (e.g. when
+    #     using `agent.ainvoke`). You do not need to call it directly.
 
-        Args:
-            request (ToolCallRequest): Request object containing tool call information.
-            handler (Callable[[ToolCallRequest], Awaitable[ToolMessage | Command[Any]]]): Async callback that executes
-            the tool call and returns a response or command.
+    #     Args:
+    #         request (ToolCallRequest): Request object containing tool call information.
+    #         handler (Callable[[ToolCallRequest], Awaitable[ToolMessage | Command[Any]]]): Async callback that executes
+    #         the tool call and returns a response or command.
 
-        Raises:
-            AnthalePolicyViolationError: If the policy enforcement response action is block.
+    #     Raises:
+    #         AnthalePolicyViolationError: If the policy enforcement response action is block.
 
-        Returns:
-            ToolMessage | Command[Any]: The result from the tool call, potentially modified by Anthale enforcement.
-        """
-        tool_call = getattr(request, "tool_call", {})
-        tool_args = tool_call.get("args") if hasattr(tool_call, "get") else None
-        request_messages = _extract_messages(value=tool_args) if tool_args is not None else []
-        if request_messages and self._async_enforcer is not None:
-            await self._async_enforcer.enforce(direction="input", messages=request_messages)
+    #     Returns:
+    #         ToolMessage | Command[Any]: The result from the tool call, potentially modified by Anthale enforcement.
+    #     """
+    #     tool_call = getattr(request, "tool_call", {})
+    #     tool_args = tool_call.get("args") if hasattr(tool_call, "get") else None
+    #     request_messages = _extract_messages(value=tool_args) if tool_args is not None else []
+    #     if request_messages and self._async_enforcer is not None:
+    #         await self._async_enforcer.enforce(direction="input", messages=request_messages)
 
-        return await handler(request)
+    #     return handler(request)
 
 
 _stream_warning_issued: bool = False
