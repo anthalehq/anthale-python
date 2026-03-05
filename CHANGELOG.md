@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0 (2026-03-05)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/anthalehq/anthale-python/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* add support for analyzing OpenAI streaming responses ([73b5fbc](https://github.com/anthalehq/anthale-python/commit/73b5fbc34ef78535ac05d005dad7ef90fdd717e2))
+
 ## 0.4.0 (2026-03-04)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/anthalehq/anthale-python/compare/v0.3.0...v0.4.0)
