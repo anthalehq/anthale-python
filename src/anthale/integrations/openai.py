@@ -92,7 +92,6 @@ def _extract_content(*, raw: Any) -> str:
                         or block.get("output_text")  # type: ignore
                         or block.get("input_text")  # type: ignore
                         or block.get("content")  # type: ignore
-                        or block
                     )
                 )
                 continue
@@ -107,7 +106,6 @@ def _extract_content(*, raw: Any) -> str:
             or raw.get("output_text")  # type: ignore
             or raw.get("input_text")  # type: ignore
             or raw.get("content")  # type: ignore
-            or stringify(value=raw)
         )
 
     return stringify(value=raw)
@@ -118,7 +116,7 @@ def _to_message(*, value: Mapping[str, Any]) -> Message | None:
     Convert a mapping into an Anthale `Message`, or `None` if it has no meaningful content.
 
     The role is read from the mapping's own `role` key, falling back to `user` when absent. Content is extracted from
-    `content`, `text`, `input_text`, `output_text`, or `arguments` keys, in that order of preference.
+    `content`, `text`, `input_text`, or `output_text` keys, in that order of preference.
 
     Args:
         value (Mapping[str, Any]): Message-like mapping to convert.
@@ -132,7 +130,6 @@ def _to_message(*, value: Mapping[str, Any]) -> Message | None:
         or value.get("text")  # type: ignore
         or value.get("input_text")  # type: ignore
         or value.get("output_text")  # type: ignore
-        or value.get("arguments")  # type: ignore
     )
 
     if not content or content.strip() in ("", "None"):
@@ -266,8 +263,7 @@ def _extract_messages_from_response(*, request_path: str, response: Response) ->
     Extract Anthale `Message` objects from the body of a supported response.
 
     Supports responses to `POST /v1/responses` (`output_text` + `output` items) and `POST /v1/chat/completions`
-    (`choices[].message` including tool-call arguments). Returns an empty list for any other endpoint or unparseable
-    bodies.
+    (`choices[].message`). Returns an empty list for any other endpoint or unparseable bodies.
 
     Args:
         request_path (str): The URL path of the originating request, used to select the correct extraction strategy.
@@ -291,14 +287,6 @@ def _extract_messages_from_response(*, request_path: str, response: Response) ->
             if isinstance(item, Mapping):
                 default_role = str(item.get("role", "assistant"))  # type: ignore
                 messages.extend(_messages_from_value(value=item.get("content"), default_role=default_role))  # type: ignore
-                arguments = item.get("arguments")  # type: ignore
-                if arguments is not None:
-                    messages.extend(
-                        _messages_from_value(
-                            value=arguments,
-                            default_role="assistant",
-                        )
-                    )
 
         return messages
 
@@ -310,18 +298,6 @@ def _extract_messages_from_response(*, request_path: str, response: Response) ->
             message = choice.get("message")  # type: ignore
             if isinstance(message, Mapping):
                 messages.extend(_messages_from_value(value=message, default_role="assistant"))
-
-                tool_calls = message.get("tool_calls")  # type: ignore
-                if isinstance(tool_calls, list):
-                    for tool_call in tool_calls:  # type: ignore
-                        function_payload = tool_call.get("function") if isinstance(tool_call, Mapping) else None  # type: ignore
-                        if isinstance(function_payload, Mapping):
-                            messages.extend(
-                                _messages_from_value(
-                                    value=function_payload.get("arguments"),  # type: ignore
-                                    default_role="assistant",
-                                )
-                            )
 
         return messages
 
@@ -348,9 +324,6 @@ def _extract_messages_from_responses_payload(*, payload: Mapping[str, Any]) -> l
         if isinstance(item, Mapping):
             default_role = str(item.get("role", "assistant"))  # type: ignore
             messages.extend(_messages_from_value(value=item.get("content"), default_role=default_role))  # type: ignore
-            arguments = item.get("arguments")  # type: ignore
-            if arguments is not None:
-                messages.extend(_messages_from_value(value=arguments, default_role="assistant"))
 
     return messages
 
@@ -419,7 +392,6 @@ def _extract_messages_from_stream_payloads(*, request_path: str, payloads: list[
 
     if request_path.endswith("/chat/completions"):
         content_parts: list[str] = []
-        arguments_parts: list[str] = []
         for payload in payloads:
             for choice in payload.get("choices", []):
                 if not isinstance(choice, Mapping):
@@ -433,20 +405,8 @@ def _extract_messages_from_stream_payloads(*, request_path: str, payloads: list[
                 if content:
                     content_parts.append(content)
 
-                tool_calls = delta.get("tool_calls")  # type: ignore
-                if isinstance(tool_calls, list):
-                    for tool_call in tool_calls:  # type: ignore
-                        function_payload = tool_call.get("function") if isinstance(tool_call, Mapping) else None  # type: ignore
-                        if isinstance(function_payload, Mapping):
-                            args_piece = _extract_content(raw=function_payload.get("arguments"))  # type: ignore
-                            if args_piece:
-                                arguments_parts.append(args_piece)
-
         if content_parts:
             messages.append(Message(role="assistant", content="".join(content_parts)))
-
-        if arguments_parts:
-            messages.append(Message(role="assistant", content="".join(arguments_parts)))
 
         return messages
 
@@ -799,7 +759,7 @@ def guard_openai_client(
     from anthale.integrations.openai import guard_openai_client
 
     client = OpenAI(api_key=environ["OPENAI_API_KEY"])
-    client = guard_openai_client(client, policy_id="<your-policy-identifier>", api_key=environ["ANTHALE_API_KEY"])
+    guard_openai_client(client, policy_id="<your-policy-identifier>", api_key=environ["ANTHALE_API_KEY"])
 
     messages = [
         {"role": "system", "content": "You are a customer support assistant."},

@@ -177,11 +177,13 @@ def _extract_messages(*, value: Any) -> list[Message]:
 
 class AnthaleLangchainMiddleware(AgentMiddleware):  # type: ignore[misc]
     """
-    LangChain middleware that enforces Anthale policies on every model and tool call made by a LangGraph agent.
+    LangChain middleware that enforces Anthale policies on model calls made by a LangGraph agent.
 
-    Attach this middleware to an agent to automatically inspect inputs and outputs against an Anthale policy.
-    If a message violates the policy the enforcer raises `AnthalePolicyViolationError` and the agent is halted
-    before the unsafe content is processed or returned.
+    Attach this middleware to an agent to automatically inspect model inputs and outputs against an Anthale policy.
+    If a message violates the policy the enforcer raises `AnthalePolicyViolationError` and the agent is halted before
+    unsafe content is processed or returned.
+
+    Tool analysis is currently disabled.
 
     Example:
     ```python
@@ -323,69 +325,33 @@ class AnthaleLangchainMiddleware(AgentMiddleware):  # type: ignore[misc]
 
         return response
 
-    # @override
-    # def wrap_tool_call(
-    #     self,
-    #     request: Any,
-    #     handler: Callable[..., Any],
-    # ) -> Any:
-    #     """
-    #     Intercept and control tool execution via handler callback. It invokes Anthale policy enforcement on the tool
-    #     arguments before the tool is executed.
+    @override
+    def wrap_tool_call(
+        self,
+        request: Any,  # noqa: ARG002
+        handler: Callable[..., Any],
+    ) -> Any:
+        """
+        Pass tool execution through unchanged.
 
-    #     This method is called automatically by the LangGraph agent runtime on every tool invocation. You do not need
-    #     to call it directly; attach the middleware to an agent via `create_agent(middleware=[...])` instead.
+        Tool analysis is intentionally disabled in this version. The hook remains available
+        for API compatibility with agent runtimes that call `wrap_tool_call`.
+        """
+        return handler(request)
 
-    #     Args:
-    #         request (ToolCallRequest): Request object containing tool call information.
-    #         handler (Callable[[ToolCallRequest], ToolMessage  |  Command[Any]]): Callback that executes the tool
-    #         call and returns a response or command.
+    @override
+    async def awrap_tool_call(
+        self,
+        request: Any,  # noqa: ARG002
+        handler: Callable[..., Awaitable[Any]],
+    ) -> Any:
+        """
+        Async pass-through variant of `wrap_tool_call`.
 
-    #     Raises:
-    #         AnthalePolicyViolationError: If the policy enforcement response action is block.
-
-    #     Returns:
-    #         ToolMessage | Command[Any]: The result from the tool call, potentially modified by Anthale enforcement.
-    #     """
-    #     tool_call = getattr(request, "tool_call", {})
-    #     tool_args = tool_call.get("args") if hasattr(tool_call, "get") else None
-    #     request_messages = _extract_messages(value=tool_args) if tool_args is not None else []
-    #     if request_messages and self._sync_enforcer is not None:
-    #         self._sync_enforcer.enforce(direction="input", messages=request_messages)
-
-    #     return handler(request)
-
-    # @override
-    # async def awrap_tool_call(
-    #     self,
-    #     request: Any,
-    #     handler: Callable[..., Awaitable[Any]],
-    # ) -> Any:
-    #     """
-    #     Async variant of `wrap_tool_call`. Intercepts tool execution and invokes Anthale policy enforcement on the
-    #     tool arguments before the tool is executed.
-
-    #     This method is called automatically by the LangGraph agent runtime on every async tool invocation (e.g. when
-    #     using `agent.ainvoke`). You do not need to call it directly.
-
-    #     Args:
-    #         request (ToolCallRequest): Request object containing tool call information.
-    #         handler (Callable[[ToolCallRequest], Awaitable[ToolMessage | Command[Any]]]): Async callback that executes
-    #         the tool call and returns a response or command.
-
-    #     Raises:
-    #         AnthalePolicyViolationError: If the policy enforcement response action is block.
-
-    #     Returns:
-    #         ToolMessage | Command[Any]: The result from the tool call, potentially modified by Anthale enforcement.
-    #     """
-    #     tool_call = getattr(request, "tool_call", {})
-    #     tool_args = tool_call.get("args") if hasattr(tool_call, "get") else None
-    #     request_messages = _extract_messages(value=tool_args) if tool_args is not None else []
-    #     if request_messages and self._async_enforcer is not None:
-    #         await self._async_enforcer.enforce(direction="input", messages=request_messages)
-
-    #     return handler(request)
+        Tool analysis is intentionally disabled in this version. The hook remains available
+        for API compatibility with agent runtimes that call `awrap_tool_call`.
+        """
+        return await handler(request)
 
 
 _stream_warning_issued: bool = False
@@ -518,8 +484,8 @@ def guard_chat_model(
     violates the configured policy, `AnthalePolicyViolationError` is raised before the response is returned
     to the caller.
 
-    Use this function when you want to guard a standalone chat model or chain. For agent-level enforcement
-    (tools included), use `AnthaleLangchainMiddleware` instead.
+    Use this function when you want to guard a standalone chat model or chain. For agent-level model-call enforcement,
+    use `AnthaleLangchainMiddleware` instead.
 
     Args:
         model (Runnable[Any, Any]): LangChain runnable/chat model to wrap.

@@ -64,6 +64,99 @@ we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
 to add `ANTHALE_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
+## Integrations
+
+Anthale includes provider integrations for OpenAI, LangChain, Anthropic (Claude), Google Gen AI (Gemini), and
+PydanticAI.
+
+### OpenAI
+
+```sh
+pip install "anthale[openai]"
+```
+
+```python
+from os import environ
+from openai import OpenAI
+from anthale.integrations.openai import guard_openai_client
+
+client = OpenAI(api_key=environ["OPENAI_API_KEY"])
+client = guard_openai_client(client, policy_id="<your-policy-identifier>", api_key=environ["ANTHALE_API_KEY"])
+```
+
+### LangChain
+
+```sh
+pip install "anthale[langchain]"
+```
+
+```python
+from os import environ
+from langchain.agents import create_agent
+from langchain_openai import ChatOpenAI
+from anthale.integrations.langchain import AnthaleLangchainMiddleware
+
+middleware = AnthaleLangchainMiddleware(policy_id="<your-policy-identifier>", api_key=environ["ANTHALE_API_KEY"])
+agent = create_agent(
+    model=ChatOpenAI(model="gpt-5-nano", api_key=environ["OPENAI_API_KEY"]),
+    middleware=[middleware],
+)
+```
+
+### Anthropic (Claude)
+
+```sh
+pip install "anthale[anthropic]"
+```
+
+```python
+from os import environ
+from anthropic import Anthropic
+from anthale.integrations.anthropic import guard_anthropic_client
+
+client = Anthropic(api_key=environ["ANTHROPIC_API_KEY"])
+client = guard_anthropic_client(client, policy_id="<your-policy-identifier>", api_key=environ["ANTHALE_API_KEY"])
+```
+
+### Gemini
+
+```sh
+pip install anthale google-genai
+```
+
+```python
+from os import environ
+from google import genai
+from anthale.integrations.gemini import guard_gemini_client
+
+client = genai.Client(api_key=environ["GOOGLE_API_KEY"])
+client = guard_gemini_client(client, policy_id="<your-policy-identifier>", api_key=environ["ANTHALE_API_KEY"])
+```
+
+### PydanticAI
+
+```sh
+pip install anthale pydantic-ai
+```
+
+```python
+from os import environ
+from pydantic_ai import Agent
+from anthale.integrations.pydantic_ai import AnthalePydanticAIModel
+
+model = AnthalePydanticAIModel(
+    "openai:gpt-5-nano",
+    policy_id="<your-policy-identifier>",
+    api_key=environ["ANTHALE_API_KEY"],
+)
+agent = Agent(model=model)
+```
+
+### Tool Scanning Status
+
+Tool scanning is currently disabled across all Anthale integrations. Anthale enforces policies on text inputs and text
+outputs only. Streamed outputs are buffered and analyzed once the stream completes.
+
 ## Async usage
 
 Simply import `AsyncAnthale` instead of `Anthale` and use `await` with each API call:

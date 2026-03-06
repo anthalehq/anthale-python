@@ -43,6 +43,7 @@ Repository = "https://github.com/anthalehq/anthale-python"
 
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
+anthropic = ["anthropic"]
 langchain = ['langchain']
 openai = ["openai"]
 
