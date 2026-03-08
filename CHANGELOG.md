@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.1 (2026-03-08)
+
+Full Changelog: [v0.6.0...v0.6.1](https://github.com/anthalehq/anthale-python/compare/v0.6.0...v0.6.1)
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([38759fc](https://github.com/anthalehq/anthale-python/commit/38759fce2f67ce4d916a472aa59beb5190191470))
+
 ## 0.6.0 (2026-03-05)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/anthalehq/anthale-python/compare/v0.5.0...v0.6.0)
