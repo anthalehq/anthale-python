@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.6.2 (2026-03-17)
+
+Full Changelog: [v0.6.1...v0.6.2](https://github.com/anthalehq/anthale-python/compare/v0.6.1...v0.6.2)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([c9b4527](https://github.com/anthalehq/anthale-python/commit/c9b4527de6127f656187afe46c4653f85b3f8aae))
+* **pydantic:** do not pass `by_alias` unless set ([38a75f8](https://github.com/anthalehq/anthale-python/commit/38a75f81fac4e69f842991f7d155179d7382bc9d))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([7061170](https://github.com/anthalehq/anthale-python/commit/706117072e501eedf66acf5cf2765795b9dc67e8))
+
 ## 0.6.1 (2026-03-08)
 
 Full Changelog: [v0.6.0...v0.6.1](https://github.com/anthalehq/anthale-python/compare/v0.6.0...v0.6.1)
