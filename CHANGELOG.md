@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.3 (2026-03-18)
+
+Full Changelog: [v0.6.2...v0.6.3](https://github.com/anthalehq/anthale-python/compare/v0.6.2...v0.6.3)
+
+### Chores
+
+* add project documentation and templates ([698a1f3](https://github.com/anthalehq/anthale-python/commit/698a1f34edbcc39ab77a310498daa4f3e763de59))
+
 ## 0.6.2 (2026-03-17)
 
 Full Changelog: [v0.6.1...v0.6.2](https://github.com/anthalehq/anthale-python/compare/v0.6.1...v0.6.2)
