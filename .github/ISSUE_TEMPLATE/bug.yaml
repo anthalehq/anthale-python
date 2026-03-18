@@ -1,0 +1,59 @@
+name: Bug Report
+description: Report a bug or unexpected behavior in Anthale Python.
+labels: [bug, triage]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug.
+
+        Please include enough detail for us to reproduce the issue in the SDK or examples.
+
+  - type: input
+    id: sdk_area
+    attributes:
+      label: Affected SDK area
+      description: Which resource, method, file, or example is affected?
+      placeholder: src/anthale/resources/policies.py or examples/basic.py
+
+  - type: textarea
+    id: description
+    validations:
+      required: true
+    attributes:
+      label: Description
+      description: Describe the current behavior and why it is incorrect.
+
+  - type: textarea
+    id: reproduce
+    validations:
+      required: true
+    attributes:
+      label: Steps to reproduce
+      description: Provide a minimal, reproducible set of steps or code.
+      render: python
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: Describe the behavior you expected to see.
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and versions
+      render: text
+      description: Include the Anthale SDK version, Python version, environment manager, and OS.
+      placeholder: |
+        Anthale SDK version:
+        Python version:
+        Environment manager:
+        OS:
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or output
+      description: Include any relevant error messages, traces, or screenshots.
