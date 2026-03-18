@@ -86,36 +86,19 @@ $ pip install ./path-to-wheel-file.whl
 ## Running tests
 
 ```sh
-$ ./scripts/test
+make test
 ```
 
 ## Linting and formatting
 
-This repository uses [ruff](https://github.com/astral-sh/ruff) and
-[black](https://github.com/psf/black) to format the code in the repository.
-
 To lint:
 
 ```sh
-$ ./scripts/lint
+make lint
 ```
 
-To format and fix all ruff issues automatically:
+To format and fix all issues automatically:
 
 ```sh
-$ ./scripts/format
+make format
 ```
-
-## Publishing and releases
-
-Changes made to this repository via the automated release PR pipeline should publish to PyPI automatically. If
-the changes aren't made through the automated pipeline, you may want to make releases manually.
-
-### Publish with a GitHub workflow
-
-You can release to package managers by using [the `Publish PyPI` GitHub action](https://www.github.com/anthalehq/anthale-python/actions/workflows/publish-pypi.yml). This requires a setup organization or repository secret to be set up.
-
-### Publish manually
-
-If you need to manually release a package, you can run the `bin/publish-pypi` script with a `PYPI_TOKEN` set on
-the environment.

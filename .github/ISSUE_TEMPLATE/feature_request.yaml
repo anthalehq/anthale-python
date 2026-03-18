@@ -1,0 +1,58 @@
+name: Feature Request
+description: Propose an SDK or repository improvement for Anthale Python.
+labels: [enhancement, triage]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion.
+
+        The most useful requests explain the SDK use case, the API surface involved, and the proposed developer experience.
+
+  - type: dropdown
+    id: request_type
+    validations:
+      required: true
+    attributes:
+      label: Request type
+      options:
+        - New SDK capability
+        - Existing API surface or typing improvement
+        - Example or documentation improvement
+        - Repository tooling improvement
+
+  - type: input
+    id: sdk_area
+    attributes:
+      label: SDK area
+      description: Which resource, method, typing, or example is affected?
+      placeholder: streaming helpers or response models
+
+  - type: textarea
+    id: use_case
+    validations:
+      required: true
+    attributes:
+      label: Use case
+      description: Describe the user or integration need this change should support.
+
+  - type: textarea
+    id: proposal
+    validations:
+      required: true
+    attributes:
+      label: Proposed solution
+      description: Describe the SDK, example, or tooling change you want to see.
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility considerations
+      description: Note any backward-compatibility, typing, or packaging concerns.
+
+  - type: textarea
+    id: success_criteria
+    attributes:
+      label: Success criteria
+      description: How should we know this request is complete and useful?
