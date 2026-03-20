@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -87,7 +87,7 @@ class PoliciesResource(SyncAPIResource):
         if not policy_identifier:
             raise ValueError(f"Expected a non-empty value for `policy_identifier` but received {policy_identifier!r}")
         return self._post(
-            f"/organizations/policies/{policy_identifier}/enforce",
+            path_template("/organizations/policies/{policy_identifier}/enforce", policy_identifier=policy_identifier),
             body=maybe_transform(
                 {
                     "direction": direction,
@@ -167,7 +167,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         if not policy_identifier:
             raise ValueError(f"Expected a non-empty value for `policy_identifier` but received {policy_identifier!r}")
         return await self._post(
-            f"/organizations/policies/{policy_identifier}/enforce",
+            path_template("/organizations/policies/{policy_identifier}/enforce", policy_identifier=policy_identifier),
             body=await async_maybe_transform(
                 {
                     "direction": direction,
