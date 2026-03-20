@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.4 (2026-03-20)
+
+Full Changelog: [v0.6.3...v0.6.4](https://github.com/anthalehq/anthale-python/compare/v0.6.3...v0.6.4)
+
+### Bug Fixes
+
+* sanitize endpoint path params ([6563aa2](https://github.com/anthalehq/anthale-python/commit/6563aa2d334436633e2ee972b488e170439b56f1))
+
 ## 0.6.3 (2026-03-18)
 
 Full Changelog: [v0.6.2...v0.6.3](https://github.com/anthalehq/anthale-python/compare/v0.6.2...v0.6.3)
