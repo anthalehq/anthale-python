@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.5 (2026-03-24)
+
+Full Changelog: [v0.6.4...v0.6.5](https://github.com/anthalehq/anthale-python/compare/v0.6.4...v0.6.5)
+
+### Chores
+
+* **internal:** update gitignore ([45565d8](https://github.com/anthalehq/anthale-python/commit/45565d8c49795b2ea5fa72ec79e9445ba7501a2f))
+
 ## 0.6.4 (2026-03-20)
 
 Full Changelog: [v0.6.3...v0.6.4](https://github.com/anthalehq/anthale-python/compare/v0.6.3...v0.6.4)
