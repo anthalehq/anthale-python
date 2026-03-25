@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.6 (2026-03-25)
+
+Full Changelog: [v0.6.5...v0.6.6](https://github.com/anthalehq/anthale-python/compare/v0.6.5...v0.6.6)
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([4043945](https://github.com/anthalehq/anthale-python/commit/40439457330cd11cb0cd3a67389985bb6b6d4d48))
+
 ## 0.6.5 (2026-03-24)
 
 Full Changelog: [v0.6.4...v0.6.5](https://github.com/anthalehq/anthale-python/compare/v0.6.4...v0.6.5)
