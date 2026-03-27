@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0 (2026-03-27)
+
+Full Changelog: [v0.6.6...v0.7.0](https://github.com/anthalehq/anthale-python/compare/v0.6.6...v0.7.0)
+
+### Features
+
+* **internal:** implement indices array format for query and form serialization ([d1fb858](https://github.com/anthalehq/anthale-python/commit/d1fb858621ca3e8eedc647706d6c69bb6dfd336a))
+
 ## 0.6.6 (2026-03-25)
 
 Full Changelog: [v0.6.5...v0.6.6](https://github.com/anthalehq/anthale-python/compare/v0.6.5...v0.6.6)
