@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.7.1 (2026-04-15)
+
+Full Changelog: [v0.7.0...v0.7.1](https://github.com/anthalehq/anthale-python/compare/v0.7.0...v0.7.1)
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([e10cc1c](https://github.com/anthalehq/anthale-python/commit/e10cc1c08c984983fb52d70e3b7682c7c2345344))
+* ensure file data are only sent as 1 parameter ([612ac39](https://github.com/anthalehq/anthale-python/commit/612ac399f11b60e16e7bd3f229f0a9ac274e56bf))
+
+
+### Chores
+
+* **ci:** remove release-doctor workflow ([c7349fa](https://github.com/anthalehq/anthale-python/commit/c7349fa6e7928b13ef039a2b4b8d04e52e412236))
+
 ## 0.7.0 (2026-03-27)
 
 Full Changelog: [v0.6.6...v0.7.0](https://github.com/anthalehq/anthale-python/compare/v0.6.6...v0.7.0)
