@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.2 (2026-04-18)
+
+Full Changelog: [v0.7.1...v0.7.2](https://github.com/anthalehq/anthale-python/compare/v0.7.1...v0.7.2)
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([122fbfa](https://github.com/anthalehq/anthale-python/commit/122fbfae72dbac32b196251bd4393e1009eab888))
+
 ## 0.7.1 (2026-04-15)
 
 Full Changelog: [v0.7.0...v0.7.1](https://github.com/anthalehq/anthale-python/compare/v0.7.0...v0.7.1)
