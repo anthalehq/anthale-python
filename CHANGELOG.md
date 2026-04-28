@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.8.0 (2026-04-28)
+
+Full Changelog: [v0.7.2...v0.8.0](https://github.com/anthalehq/anthale-python/compare/v0.7.2...v0.8.0)
+
+### Features
+
+* support setting headers via env ([997e79a](https://github.com/anthalehq/anthale-python/commit/997e79ab3edf3a45f2f66de8db445bfa7cf86d83))
+
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([a56b699](https://github.com/anthalehq/anthale-python/commit/a56b699541c4833d6b7caa3d40383a975bb1f3ce))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([0b3e16e](https://github.com/anthalehq/anthale-python/commit/0b3e16e2f422e85d3d31c16308381e6788e5ddfb))
+
 ## 0.7.2 (2026-04-18)
 
 Full Changelog: [v0.7.1...v0.7.2](https://github.com/anthalehq/anthale-python/compare/v0.7.1...v0.7.2)
