@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.9.0 (2026-05-13)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/anthalehq/anthale-python/compare/v0.8.0...v0.9.0)
+
+### Features
+
+* **internal/types:** support eagerly validating pydantic iterators ([2e3ff8d](https://github.com/anthalehq/anthale-python/commit/2e3ff8d3f77e53d5404ce6763c901b9dcfbdda6b))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([11d5d8c](https://github.com/anthalehq/anthale-python/commit/11d5d8c4fc38cc60610a1e85571f7b122d3ef118))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([1f3e9cd](https://github.com/anthalehq/anthale-python/commit/1f3e9cda83821497aacefff3dafc25926b336068))
+
 ## 0.8.0 (2026-04-28)
 
 Full Changelog: [v0.7.2...v0.8.0](https://github.com/anthalehq/anthale-python/compare/v0.7.2...v0.8.0)
